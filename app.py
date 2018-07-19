@@ -49,7 +49,6 @@ def submit(problem_id, language, source_code):
     driver.execute_script('myCodeMirror.setValue("{0}");'.format(source_code))
 
     driver.find_element_by_css_selector('button.btn.btn-primary').click()
-    time.sleep(60)  # delay for re-submission
     result = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#status-table tbody tr:first-child .result-text')))
     if result.text != '틀렸습니다':
         print(source_code)
@@ -68,6 +67,7 @@ def can_i_be_a_millionare():
                         for f in range(e+1, 46):
                             if submit(10948, 'text', '{0} {1} {2} {3} {4} {5}'.format(a, b, c, d, e, f)):
                                 sys.exit(0)
+                            time.sleep(60)  # delay for re-submission
 
 login('YOUR_BOJ_ID', 'YOUR_BOJ_PASSWORD')
 can_i_be_a_millionare()
