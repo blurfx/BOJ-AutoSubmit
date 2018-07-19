@@ -68,5 +68,5 @@ def can_i_be_a_millionare():
                             if submit(10948, 'text', '{0} {1} {2} {3} {4} {5}'.format(a, b, c, d, e, f)):
                                 sys.exit(0)
 
-login()
+login('YOUR_BOJ_ID', 'YOUR_BOJ_PASSWORD')
 can_i_be_a_millionare()
