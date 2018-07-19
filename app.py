@@ -9,6 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 chrome_options = Options()
+chrome_options.add_argument('headless')  # If you don`t want headless mode, comment out this line.
 chrome_options.add_argument("--window-size=1920,1920")
 driver = webdriver.Chrome('./chromedriver.exe', chrome_options=chrome_options)
 
