@@ -50,7 +50,7 @@ def submit(problem_id, language, source_code):
 
     driver.find_element_by_css_selector('button.btn.btn-primary').click()
     result = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#status-table tbody tr:first-child .result-text')))
-    if result.text != '틀렸습니다':
+    if ('점' in result.text and '채점' not in result.text) or ('맞았습니다' in result.text) :
         print(source_code)
         print(result)
         return True
