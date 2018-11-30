@@ -2,7 +2,6 @@ import sys
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,7 +14,7 @@ driver = webdriver.Chrome('./chromedriver.exe', chrome_options=chrome_options)
 
 
 def login(id, password):
-    driver.get('https://www.acmicpc.net/login/?next=%2F')
+    driver.get('https://www.acmicpc.net/login?next=%2F')
     el_id = driver.find_element_by_name('login_user_id')
     el_pass = driver.find_element_by_name('login_password')
     bt_login = driver.find_element_by_css_selector('.btn-u.pull-right')
@@ -30,7 +29,7 @@ def login(id, password):
 def submit(problem_id, language, source_code):
     driver.get('https://www.acmicpc.net/submit/{0}'.format(problem_id))
 
-    lang_chosen = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'language_chosen')))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'language_chosen')))
     driver.execute_script('$("#language_chosen").trigger("mousedown");')
 
     langs = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.chosen-results li')))
